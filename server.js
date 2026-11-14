@@ -58,6 +58,9 @@ async function initDb() {
       id BIGSERIAL PRIMARY KEY,sender_id TEXT NOT NULL REFERENCES delegations(id),
       recipient_id TEXT NOT NULL REFERENCES delegations(id),body TEXT NOT NULL,created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
+    CREATE TABLE IF NOT EXISTS uk_strategy(
+      id TEXT PRIMARY KEY DEFAULT 'uk',body TEXT NOT NULL DEFAULT '',updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
   `);
   for (const d of delegations) {
     await pool.query(
@@ -93,6 +96,24 @@ app.get("/api/content",requireDelegate,async(req,res)=>{
     res.json({news:news.rows,documents:docs.rows,resolutions:rs.rows});
   }catch(e){console.error(e);res.status(500).json({error:"Не удалось загрузить материалы"});}
 });
+// UK-only diplomatic strategy. Only the authenticated UK delegation can read or edit it.
+app.get("/api/uk/strategy",requireDelegate,async(req,res)=>{
+  if(req.session.delegationId!=="uk")return res.status(403).json({error:"Доступ разрешён только делегации Великобритании"});
+  try{
+    const {rows}=await pool.query("SELECT body,updated_at FROM uk_strategy WHERE id='uk'");
+    res.json(rows[0]||{body:"",updated_at:null});
+  }catch(e){console.error(e);res.status(500).json({error:"Не удалось загрузить стратегию"});}
+});
+app.put("/api/uk/strategy",requireDelegate,async(req,res)=>{
+  if(req.session.delegationId!=="uk")return res.status(403).json({error:"Доступ разрешён только делегации Великобритании"});
+  const body=String(req.body.body||"");
+  if(body.length>12000)return res.status(400).json({error:"Текст слишком длинный"});
+  try{
+    await pool.query("INSERT INTO uk_strategy(id,body,updated_at) VALUES('uk',$1,NOW()) ON CONFLICT(id) DO UPDATE SET body=EXCLUDED.body,updated_at=NOW()",[body]);
+    res.json({ok:true});
+  }catch(e){console.error(e);res.status(500).json({error:"Не удалось сохранить стратегию"});}
+});
+
 app.post("/api/vote",requireDelegate,async(req,res)=>{
   try{
     const {resolution_id,choice}=req.body;

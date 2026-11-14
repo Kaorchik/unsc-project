@@ -1,15 +1,97 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071a33"><title>UNSC Simulation 2026</title><link rel="manifest" href="/manifest.json"><style>
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#061326,#0b2342);color:#f5f7fa;font:16px system-ui}main{max-width:720px;margin:auto;padding:24px 16px 60px}.brand{color:#d7b66d;font-size:12px;letter-spacing:.14em;font-weight:700}h1{font-size:28px}.panel{background:#10294a;border:1px solid #2b496c;border-radius:18px;padding:18px;margin:16px 0}p,.muted{color:#aebdd0;line-height:1.5}input,textarea,button{width:100%;padding:13px;border-radius:10px;margin:6px 0;font:inherit}input,textarea{background:#071a33;color:white;border:1px solid #45617f}button{background:#d7b66d;border:0;color:#17243a;font-weight:700;cursor:pointer}.secondary{background:#1b3a60;color:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hidden{display:none}.flag{font-size:40px}.item,.msg{padding:12px 0;border-bottom:1px solid #34506d}.msg{background:#0a1e38;border:0;padding:12px;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}
-</style></head><body><main><div class="brand">UNITED NATIONS · SECURITY COUNCIL</div><h1>Кризис Нордании</h1><p>Мобильная платформа заседания · 2026</p><section id="login" class="panel"><h2>Вход делегации</h2><p>Введите пароль, выданный секретариатом.</p><input id="pass" type="password" placeholder="Пароль делегации"><button id="enter">Войти</button><div id="err" class="muted"></div></section>
-<div id="app" class="hidden"><section class="panel"><div class="flag" id="flag"></div><h2 id="country"></h2><span class="muted">Личный кабинет делегации</span><button class="secondary" id="exit">Выйти</button></section><div class="grid"><button data-tab="news">Новости</button><button data-tab="docs">Документы</button><button data-tab="votes">Голосование</button><button data-tab="chat" id="chatBtn" class="hidden">Закрытый канал</button></div>
-<section id="news" class="panel"><h2>Новости</h2><div id="newsList"></div></section><section id="docs" class="panel hidden"><h2>Документы</h2><div id="docsList"></div></section><section id="votes" class="panel hidden"><h2>Голосование</h2><div id="voteList"></div></section><section id="chat" class="panel hidden"><h2>Закрытый канал США — Турция</h2><div id="msgs"></div><textarea id="message" placeholder="Сообщение"></textarea><button id="send">Отправить</button></section></div></main>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071a33"><title>UNSC Simulation 2026</title>
+<link rel="manifest" href="/manifest.json">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#061326;color:#f5f7fa;font:16px system-ui}
+main{max-width:720px;margin:auto;padding:24px 16px 60px}.brand{color:#d7b66d;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:28px}.panel{background:#10294a;border:1px solid #2b496c;border-radius:18px;padding:18px;margin:16px 0}
+p,.muted{color:#aebdd0;line-height:1.5}input,textarea,button{width:100%;padding:13px;border-radius:10px;margin:6px 0;font:inherit}
+input,textarea{background:#071a33;color:white;border:1px solid #45617f}button{background:#d7b66d;border:0;color:#17243a;font-weight:700;cursor:pointer}
+.secondary{background:#1b3a60;color:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hidden{display:none!important}
+.flag{font-size:40px}.item,.msg{padding:12px 0;border-bottom:1px solid #34506d}.msg{background:#0a1e38;border:0;padding:12px;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}
+/* Royal UK mobile cabinet */
+#ukDashboard{display:none;max-width:464px;margin:0 auto;padding:0 0 28px;background:#06152a;min-height:100vh}
+#ukDashboard.active{display:block}
+.uk-frame{position:relative;width:100%;line-height:0;overflow:hidden;background:#06152a}
+.uk-frame img{display:block;width:100%;height:auto}
+.uk-hit{position:absolute;display:block;border:0;background:transparent;padding:0;margin:0;border-radius:12px;cursor:pointer;z-index:3}
+.uk-hit:focus-visible{outline:3px solid #f4c86e;background:#ffffff18}
+.uk-hit.strategy{left:3.4%;top:53.6%;width:45.5%;height:10.1%}
+.uk-hit.voting{left:51%;top:53.6%;width:45.5%;height:10.1%}
+.uk-hit.documents{left:3.4%;top:64.7%;width:45.5%;height:10.1%}
+.uk-hit.messages{left:51%;top:64.7%;width:45.5%;height:10.1%}
+.uk-hit.history{left:3.4%;top:75.8%;width:45.5%;height:10.1%}
+.uk-hit.profile{left:51%;top:75.8%;width:45.5%;height:10.1%}
+.uk-hit.menu{right:3%;top:5.3%;width:9%;height:5.5%;border-radius:8px}
+#ukPage{display:none;max-width:464px;margin:0 auto;min-height:100vh;padding:20px 16px 40px;background:linear-gradient(160deg,#07172d,#10294a);color:#f5f1e8}
+#ukPage.active{display:block}
+.uk-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #a8894d;padding-bottom:12px;margin-bottom:20px}
+.uk-kicker{font-size:11px;letter-spacing:.16em;color:#d9b66a}.uk-title{font:30px Georgia,serif;margin:8px 0;color:#f8f2e6}
+.uk-card{background:#10294a;border:1px solid #9d7a3e;border-radius:14px;padding:16px;margin:12px 0}
+.uk-btn{background:#d6b46b;color:#101d31}.uk-back{width:auto;padding:9px 14px;background:#1b3a60;color:#fff}
+.uk-page-content{color:#d7dfeb;line-height:1.55}.uk-page-content .item{border-color:#39516e}
+@media(min-width:600px){#ukDashboard,#ukPage{border-left:1px solid #213b5d;border-right:1px solid #213b5d;box-shadow:0 0 60px #0008}}
+</style></head>
+<body>
+<main id="main">
+<div class="brand">UNITED NATIONS · SECURITY COUNCIL</div><h1>Кризис Нордании</h1><p>Мобильная платформа заседания · 2026</p>
+<section id="login" class="panel"><h2>Вход делегации</h2><p>Введите пароль, выданный секретариатом.</p><input id="pass" type="password" placeholder="Пароль делегации"><button id="enter">Войти</button><div id="err" class="muted"></div></section>
+<div id="app" class="hidden"><section class="panel"><div class="flag" id="flag"></div><h2 id="country"></h2><span class="muted">Личный кабинет делегации</span><button class="secondary" id="exit">Выйти</button></section>
+<div class="grid"><button data-tab="news">Новости</button><button data-tab="docs">Документы</button><button data-tab="votes">Голосование</button><button data-tab="chat" id="chatBtn" class="hidden">Закрытый канал</button></div>
+<section id="news" class="panel"><h2>Новости</h2><div id="newsList"></div></section><section id="docs" class="panel hidden"><h2>Документы</h2><div id="docsList"></div></section><section id="votes" class="panel hidden"><h2>Голосование</h2><div id="voteList"></div></section><section id="chat" class="panel hidden"><h2>Закрытый канал США — Турция</h2><div id="msgs"></div><textarea id="message" placeholder="Сообщение"></textarea><button id="send">Отправить</button></section></div>
+</main>
+<div id="ukDashboard">
+ <div class="uk-frame">
+  <img src="/uk-royal-dashboard.png" alt="Royal Diplomatic Mission — United Kingdom dashboard">
+  <button class="uk-hit strategy" aria-label="Дипломатическая стратегия" data-ukpage="strategy"></button>
+  <button class="uk-hit voting" aria-label="Голосования" data-ukpage="votes"></button>
+  <button class="uk-hit documents" aria-label="Документы" data-ukpage="docs"></button>
+  <button class="uk-hit messages" aria-label="Переписка" data-ukpage="messages"></button>
+  <button class="uk-hit history" aria-label="История решений" data-ukpage="history"></button>
+  <button class="uk-hit profile" aria-label="Профиль делегата" data-ukpage="profile"></button>
+  <button class="uk-hit menu" aria-label="Меню" data-ukpage="menu"></button>
+ </div>
+</div>
+<div id="ukPage">
+ <div class="uk-top"><div><div class="uk-kicker">ROYAL DIPLOMATIC MISSION</div><div style="font:19px Georgia,serif">UNITED KINGDOM 🇬🇧</div></div><button class="uk-back" id="ukBack">← Главная</button></div>
+ <div id="ukPageBody" class="uk-page-content"></div>
+</div>
 <script>
-let me;const $=x=>document.getElementById(x);async function api(p,o={}){let r=await fetch('/api/'+p,{...o,headers:{'content-type':'application/json',...(o.headers||{})}}),d=await r.json();if(!r.ok)throw Error(d.error||'Ошибка');return d}function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-$('enter').onclick=async()=>{try{let d=await api('login',{method:'POST',body:JSON.stringify({password:$('pass').value})});me=d.delegate;$('login').classList.add('hidden');$('app').classList.remove('hidden');$('flag').textContent=me.flag;$('country').textContent=me.name;$('chatBtn').classList.toggle('hidden',!['usa','turkey'].includes(me.id));await refresh()}catch(e){$('err').textContent=e.message}};
+let me;const $=x=>document.getElementById(x);
+async function api(p,o={}){let r=await fetch('/api/'+p,{...o,headers:{'content-type':'application/json',...(o.headers||{})}}),d=await r.json();if(!r.ok)throw Error(d.error||'Ошибка');return d}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('enter').onclick=async()=>{try{let d=await api('login',{method:'POST',body:JSON.stringify({password:$('pass').value})});me=d.delegate;$('login').classList.add('hidden');$('main').querySelector('.brand').classList.add('hidden');$('main').querySelector('h1').classList.add('hidden');$('main').querySelector('main>p')?.classList.add('hidden');if(me.id==='uk'){ $('main').style.display='none';$('ukDashboard').classList.add('active'); }else{$('app').classList.remove('hidden');$('flag').textContent=me.flag;$('country').textContent=me.name;$('chatBtn').classList.toggle('hidden',!['usa','turkey'].includes(me.id));await refresh()}}catch(e){$('err').textContent=e.message}};
 document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>['news','docs','votes','chat'].forEach(t=>$(t).classList.toggle('hidden',t!==b.dataset.tab)));
 async function refresh(){let d=await api('content');$('newsList').innerHTML=d.news.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Объявлений пока нет';$('docsList').innerHTML=d.documents.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Документов пока нет';$('voteList').innerHTML=d.resolutions.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.text)}</p>${x.status==='open'?['for','against','abstain'].map((v,i)=>`<button class="secondary" onclick="cast(${x.id},'${v}')">${['За','Против','Воздержаться'][i]}</button>`).join(''):'Голосование закрыто'}</div>`).join('')||'Нет проектов';if(['usa','turkey'].includes(me.id))await loadChat()}
 async function cast(id,choice){try{await api('vote',{method:'POST',body:JSON.stringify({resolution_id:id,choice})});alert('Голос принят');refresh()}catch(e){alert(e.message)}}
 async function loadChat(){let d=await api('chat');$('msgs').innerHTML=d.messages.map(m=>`<div class="msg"><b>${m.sender_id==='usa'?'США':'Турция'}</b><p>${esc(m.body)}</p><small>${new Date(m.created_at).toLocaleString()}</small></div>`).join('')}
 $('send').onclick=async()=>{try{await api('chat',{method:'POST',body:JSON.stringify({body:$('message').value})});$('message').value='';loadChat()}catch(e){alert(e.message)}};
+async function ukOpen(page){
+ $('ukDashboard').classList.remove('active');$('ukPage').classList.add('active');
+ const body=$('ukPageBody');
+ if(page==='strategy'){
+  body.innerHTML='<div class="uk-kicker">FOREIGN POLICY / UNITED KINGDOM</div><h1 class="uk-title">Diplomatic Strategy</h1><div class="uk-card"><p>Стратегические приоритеты британской делегации. Этот раздел редактируется представителем Великобритании.</p><textarea id="ukStrategy" rows="10" placeholder="Введите позицию и дипломатические инициативы..."></textarea><button class="uk-btn" id="saveStrategy">Сохранить стратегию</button><div id="strategyStatus" class="muted"></div></div>';
+  try{let d=await api('uk/strategy');$('ukStrategy').value=d.body||''}catch(e){$('strategyStatus').textContent=e.message}
+  $('saveStrategy').onclick=async()=>{try{await api('uk/strategy',{method:'PUT',body:JSON.stringify({body:$('ukStrategy').value})});$('strategyStatus').textContent='Стратегия сохранена'}catch(e){$('strategyStatus').textContent=e.message}};
+ }else if(page==='docs'||page==='votes'){
+  body.innerHTML='<div class="uk-kicker">UNITED NATIONS SECURITY COUNCIL</div><h1 class="uk-title">'+(page==='docs'?'Documents':'Voting')+'</h1><div class="uk-card" id="ukData">Загрузка…</div>';
+  try{let d=await api('content');if(page==='docs')$('ukData').innerHTML=d.documents.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Документов пока нет';else $('ukData').innerHTML=d.resolutions.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.text)}</p>${x.status==='open'?['for','against','abstain'].map((v,i)=>`<button class="uk-btn" onclick="ukCast(${x.id},'${v}')">${['За','Против','Воздержаться'][i]}</button>`).join(''):'Голосование закрыто'}</div>`).join('')||'Нет проектов'}catch(e){$('ukData').textContent=e.message}
+ }else if(page==='messages'){
+  body.innerHTML='<div class="uk-kicker">DIPLOMATIC CORRESPONDENCE</div><h1 class="uk-title">Messages</h1><div class="uk-card">Раздел переписки Великобритании пока не подключён к серверу. Остальные разделы кабинета работают с общей базой проекта.</div>';
+ }else if(page==='history'){
+  body.innerHTML='<div class="uk-kicker">ARCHIVE</div><h1 class="uk-title">Decision History</h1><div class="uk-card">История голосований и решений будет отображаться здесь. Сейчас доступны актуальные проекты в разделе Voting.</div>';
+ }else if(page==='profile'){
+  body.innerHTML='<div class="uk-kicker">DELEGATE PROFILE</div><h1 class="uk-title">Профиль делегата</h1><div class="uk-card"><div style="font-size:38px">🇬🇧</div><h2>Великобритания</h2><p>Permanent Mission to the United Nations</p><p>Статус: авторизованная делегация</p></div>';
+ }else{
+  body.innerHTML='<h1 class="uk-title">Royal Mission Menu</h1><div class="uk-card">'+[['strategy','Дипломатическая стратегия'],['votes','Голосования'],['docs','Документы'],['messages','Переписка'],['history','История решений'],['profile','Профиль делегата']].map(x=>`<button class="uk-btn" onclick="ukOpen('${x[0]}')">${x[1]}</button>`).join('')+'<button class="uk-back" onclick="ukLogout()">Выйти из кабинета</button></div>';
+ }
+}
+async function ukCast(id,choice){try{await api('vote',{method:'POST',body:JSON.stringify({resolution_id:id,choice})});alert('Голос принят');ukOpen('votes')}catch(e){alert(e.message)}}
+document.querySelectorAll('[data-ukpage]').forEach(b=>b.addEventListener('click',()=>ukOpen(b.dataset.ukpage)));
+$('ukBack').onclick=()=>{$('ukPage').classList.remove('active');$('ukDashboard').classList.add('active')};
+async function ukLogout(){await api('logout',{method:'POST'});location.reload()}
 $('exit').onclick=async()=>{await api('logout',{method:'POST'});location.reload()};
 </script></body></html>
