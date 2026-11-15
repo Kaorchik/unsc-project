@@ -19,13 +19,13 @@ input,textarea{background:#071a33;color:white;border:1px solid #45617f}button{ba
 .uk-frame img{display:block;width:100%;height:auto}
 .uk-hit{position:absolute;display:block;border:0;background:transparent;padding:0;margin:0;border-radius:12px;cursor:pointer;z-index:3}
 .uk-hit:focus-visible{outline:3px solid #f4c86e;background:#ffffff18}
-.uk-hit.strategy{left:3.4%;top:53.6%;width:45.5%;height:10.1%}
-.uk-hit.voting{left:51%;top:53.6%;width:45.5%;height:10.1%}
-.uk-hit.documents{left:3.4%;top:64.7%;width:45.5%;height:10.1%}
-.uk-hit.messages{left:51%;top:64.7%;width:45.5%;height:10.1%}
-.uk-hit.history{left:3.4%;top:75.8%;width:45.5%;height:10.1%}
-.uk-hit.profile{left:51%;top:75.8%;width:45.5%;height:10.1%}
-.uk-hit.menu{right:3%;top:5.3%;width:9%;height:5.5%;border-radius:8px}
+.uk-hit.strategy{left:3.4%;top:51.4%;width:45.5%;height:10.5%}
+.uk-hit.voting{left:51%;top:51.4%;width:45.5%;height:10.5%}
+.uk-hit.documents{left:3.4%;top:62.9%;width:45.5%;height:10.5%}
+.uk-hit.messages{left:51%;top:62.9%;width:45.5%;height:10.5%}
+.uk-hit.history{left:3.4%;top:74.4%;width:45.5%;height:10.5%}
+.uk-hit.profile{left:51%;top:74.4%;width:45.5%;height:10.5%}
+.uk-hit.menu{right:3%;top:3.7%;width:9%;height:5.5%;border-radius:8px}
 #ukPage{display:none;max-width:464px;margin:0 auto;min-height:100vh;padding:20px 16px 40px;background:linear-gradient(160deg,#07172d,#10294a);color:#f5f1e8}
 #ukPage.active{display:block}
 .uk-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #a8894d;padding-bottom:12px;margin-bottom:20px}
@@ -34,11 +34,88 @@ input,textarea{background:#071a33;color:white;border:1px solid #45617f}button{ba
 .uk-btn{background:#d6b46b;color:#101d31}.uk-back{width:auto;padding:9px 14px;background:#1b3a60;color:#fff}
 .uk-page-content{color:#d7dfeb;line-height:1.55}.uk-page-content .item{border-color:#39516e}
 @media(min-width:600px){#ukDashboard,#ukPage{border-left:1px solid #213b5d;border-right:1px solid #213b5d;box-shadow:0 0 60px #0008}}
+
+/* Public delegation entry flow */
+body{background:#061326}
+.entry-screen{min-height:100svh;position:relative;overflow:hidden;color:#f7f2e8;background:#061326}
+.entry-screen::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,13,28,.28),rgba(3,13,28,.76) 58%,#061326 100%),url('/un-headquarters-bg.png') center 43%/cover no-repeat;transform:scale(1.02)}
+.entry-inner{position:relative;z-index:1;max-width:980px;margin:auto;padding:clamp(24px,5vh,58px) 18px 34px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.entry-brand{display:flex;align-items:center;justify-content:center;gap:14px;color:#f1d18a;text-transform:uppercase;letter-spacing:.13em;font:600 clamp(13px,2vw,18px) Georgia,serif;margin-bottom:clamp(35px,8vh,88px)}
+.entry-seal{width:58px;height:58px;border:2px solid #d7b66d;border-radius:50%;display:grid;place-items:center;font-size:30px;color:#e5c477;box-shadow:0 0 24px #d7b66d44}
+.entry-title{font:clamp(36px,7vw,66px) Georgia,serif;line-height:1.08;margin:0 0 15px;text-shadow:0 3px 20px #000}
+.entry-subtitle{font:clamp(17px,3vw,23px) Georgia,serif;color:#e1e5ee;line-height:1.5;margin:0 auto 30px;max-width:680px}
+.gold-rule{width:min(420px,80%);height:1px;background:linear-gradient(90deg,transparent,#d8b66c,transparent);margin:0 auto 30px;position:relative}
+.gold-rule:after{content:'✦';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:0 14px;background:#0b1b31;color:#e0bd70}
+.entry-primary{width:min(440px,100%);padding:17px 22px;border:1px solid #e1bd6d;border-radius:13px;background:linear-gradient(135deg,#f0d18c,#bd9144);color:#101b2d;font:600 19px Georgia,serif;box-shadow:0 0 26px #d7b66d55;letter-spacing:.02em}
+.entry-footer{margin-top:auto;padding-top:44px;color:#d5b66f;letter-spacing:.28em;font:12px Georgia,serif}
+#countryScreen{display:none;min-height:100svh;position:relative;overflow:hidden;background:linear-gradient(180deg,#07172c,#061326);color:#f7f2e8}
+#countryScreen.active{display:block}
+.country-backdrop{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,13,28,.56),rgba(4,16,32,.94) 42%,#061326 100%),url('/un-headquarters-bg.png') center 42%/cover no-repeat;opacity:.9}
+.country-content{position:relative;z-index:1;max-width:1100px;margin:auto;padding:28px 18px 36px}
+.country-head{text-align:center;padding:12px 0 24px}
+.country-brand{font:600 14px Georgia,serif;letter-spacing:.13em;color:#e5c477;text-transform:uppercase}
+.country-title{font:clamp(30px,5vw,48px) Georgia,serif;margin:20px 0 8px}
+.country-hint{color:#d3dbe6;margin:0 0 20px}
+.country-search{max-width:540px;margin:0 auto 24px;display:block;background:#071a33eF;border:1px solid #9b7a44;color:#fff;border-radius:30px;padding:13px 20px}
+.country-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.country-card{display:flex;align-items:center;gap:14px;min-height:104px;padding:14px;border:1px solid #a98245;border-radius:15px;background:linear-gradient(135deg,rgba(12,34,59,.96),rgba(4,17,34,.97));color:#f6f0e5;text-align:left;box-shadow:0 8px 22px #0005;transition:transform .16s,border-color .16s,box-shadow .16s}
+.country-card:hover,.country-card:focus-visible{transform:translateY(-2px);border-color:#f1d18a;box-shadow:0 0 18px #d7b66d44;outline:none}
+.country-flag{width:68px;height:48px;flex:0 0 68px;object-fit:cover;border-radius:5px;box-shadow:0 2px 8px #0008;font-size:44px;display:grid;place-items:center}
+.country-name{font:20px Georgia,serif;line-height:1.15;display:block}
+.country-en{font:13px Georgia,serif;color:#b9c5d5;display:block;margin-top:5px}
+.country-arrow{margin-left:auto;color:#e3b85f;font-size:24px}
+.nordania-flag{background:linear-gradient(to bottom,#163b80 0 33.33%,#fff 33.33% 66.66%,#167342 66.66%);position:relative}
+.nordania-flag:after{content:'✴';color:#f3c22e;text-shadow:0 1px 3px #8a5a00;font-size:32px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.country-bottom{text-align:center;color:#d8b66c;letter-spacing:.25em;font:12px Georgia,serif;margin:32px 0 0}
+#passwordScreen{display:none;min-height:100svh;position:relative;overflow:hidden;background:#061326;color:#f8f2e8}
+#passwordScreen.active{display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.password-bg{position:absolute;inset:0;background:linear-gradient(180deg,#061326aa,#061326f5),url('/un-headquarters-bg.png') center/cover no-repeat}
+.password-card{position:relative;z-index:1;width:min(460px,100%);padding:28px;border:1px solid #a98245;border-radius:20px;background:linear-gradient(145deg,#10294aee,#061326f5);box-shadow:0 20px 60px #0008;text-align:center}
+.password-card .country-flag{margin:0 auto 16px;width:78px;height:54px}
+.password-card h2{font:30px Georgia,serif;margin:8px 0}
+.password-card p{color:#bdc8d7}
+.password-card input{margin:14px 0 8px}
+.password-actions{display:flex;gap:10px;margin-top:10px}
+.password-actions button{flex:1}
+.password-back{background:#1b3a60;color:#fff;border:1px solid #49617f}
+#main{display:none}
+@media(max-width:700px){.country-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.country-card{min-height:86px;padding:10px;gap:9px}.country-flag{width:54px;height:39px;flex-basis:54px;font-size:34px}.country-name{font-size:16px}.country-en{font-size:11px}.country-content{padding:20px 12px 30px}.entry-brand{margin-bottom:42px}}
+@media(max-width:390px){.country-grid{grid-template-columns:1fr}.country-card{min-height:76px}.country-flag{width:62px;height:44px;flex-basis:62px}}
+
 </style></head>
 <body>
+<section id="welcomeScreen" class="entry-screen">
+ <div class="entry-inner">
+  <div class="entry-brand"><span class="entry-seal">✺</span><span>UNITED NATIONS<br><b>SECURITY COUNCIL</b></span></div>
+  <h1 class="entry-title">Добро пожаловать, делегат.</h1>
+  <p class="entry-subtitle">Официальный дипломатический портал Совета Безопасности ООН</p>
+  <div class="gold-rule"></div>
+  <button class="entry-primary" id="startEntry">♙ &nbsp; Вход для делегаций &nbsp; →</button>
+  <div class="entry-footer">DIPLOMACY &nbsp; • &nbsp; PEACE &nbsp; • &nbsp; SECURITY</div>
+ </div>
+</section>
+<section id="countryScreen">
+ <div class="country-backdrop"></div><div class="country-content">
+  <header class="country-head"><div class="country-brand">✺ &nbsp; UNITED NATIONS SECURITY COUNCIL</div><h1 class="country-title">Выберите вашу делегацию</h1><p class="country-hint">Войдите в дипломатический кабинет вашей страны</p><div class="gold-rule"></div></header>
+  <input id="countrySearch" class="country-search" type="search" placeholder="⌕  Поиск страны..." aria-label="Поиск страны">
+  <div class="country-grid" id="countryGrid">
+   <button class="country-card" data-id="france" data-name="Франция" data-flag="🇫🇷"><span class="country-flag">🇫🇷</span><span><span class="country-name">ФРАНЦИЯ</span><span class="country-en">French Republic</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="usa" data-name="США" data-flag="🇺🇸"><span class="country-flag">🇺🇸</span><span><span class="country-name">США</span><span class="country-en">United States</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="russia" data-name="Россия" data-flag="🇷🇺"><span class="country-flag">🇷🇺</span><span><span class="country-name">РОССИЯ</span><span class="country-en">Russian Federation</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="china" data-name="Китай" data-flag="🇨🇳"><span class="country-flag">🇨🇳</span><span><span class="country-name">КИТАЙ</span><span class="country-en">People’s Republic of China</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="uk" data-name="Великобритания" data-flag="🇬🇧"><span class="country-flag">🇬🇧</span><span><span class="country-name">ВЕЛИКОБРИТАНИЯ</span><span class="country-en">United Kingdom</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="brazil" data-name="Бразилия" data-flag="🇧🇷"><span class="country-flag">🇧🇷</span><span><span class="country-name">БРАЗИЛИЯ</span><span class="country-en">Federative Republic of Brazil</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="japan" data-name="Япония" data-flag="🇯🇵"><span class="country-flag">🇯🇵</span><span><span class="country-name">ЯПОНИЯ</span><span class="country-en">Japan</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="turkey" data-name="Турция" data-flag="🇹🇷"><span class="country-flag">🇹🇷</span><span><span class="country-name">ТУРЦИЯ</span><span class="country-en">Republic of Türkiye</span></span><span class="country-arrow">→</span></button>
+   <button class="country-card" data-id="nordania" data-name="Нордания" data-flag="🏳️"><span class="country-flag nordania-flag" aria-label="Флаг Нордании"></span><span><span class="country-name">НОРДАНИЯ</span><span class="country-en">Republic of Nordania</span></span><span class="country-arrow">→</span></button>
+  </div>
+  <div class="country-bottom">DIPLOMACY &nbsp; • &nbsp; PEACE &nbsp; • &nbsp; RESPONSIBILITY</div>
+ </div>
+</section>
+<section id="passwordScreen">
+ <div class="password-bg"></div><div class="password-card"><div id="selectedFlag" class="country-flag">🇫🇷</div><div class="country-brand">DIPLOMATIC MISSION</div><h2 id="selectedName">Франция</h2><p>Введите пароль, выданный секретариатом вашей делегации.</p><input id="pass" type="password" placeholder="Пароль делегации" autocomplete="current-password"><div class="password-actions"><button class="password-back" id="backCountries">← Назад</button><button id="enter">Войти →</button></div><div id="err" class="muted" role="alert"></div></div>
+</section>
 <main id="main">
-<div class="brand">UNITED NATIONS · SECURITY COUNCIL</div><h1>Кризис Нордании</h1><p>Мобильная платформа заседания · 2026</p>
-<section id="login" class="panel"><h2>Вход делегации</h2><p>Введите пароль, выданный секретариатом.</p><input id="pass" type="password" placeholder="Пароль делегации"><button id="enter">Войти</button><div id="err" class="muted"></div></section>
 <div id="app" class="hidden"><section class="panel"><div class="flag" id="flag"></div><h2 id="country"></h2><span class="muted">Личный кабинет делегации</span><button class="secondary" id="exit">Выйти</button></section>
 <div class="grid"><button data-tab="news">Новости</button><button data-tab="docs">Документы</button><button data-tab="votes">Голосование</button><button data-tab="chat" id="chatBtn" class="hidden">Закрытый канал</button></div>
 <section id="news" class="panel"><h2>Новости</h2><div id="newsList"></div></section><section id="docs" class="panel hidden"><h2>Документы</h2><div id="docsList"></div></section><section id="votes" class="panel hidden"><h2>Голосование</h2><div id="voteList"></div></section><section id="chat" class="panel hidden"><h2>Закрытый канал США — Турция</h2><div id="msgs"></div><textarea id="message" placeholder="Сообщение"></textarea><button id="send">Отправить</button></section></div>
@@ -63,7 +140,14 @@ input,textarea{background:#071a33;color:white;border:1px solid #45617f}button{ba
 let me;const $=x=>document.getElementById(x);
 async function api(p,o={}){let r=await fetch('/api/'+p,{...o,headers:{'content-type':'application/json',...(o.headers||{})}}),d=await r.json();if(!r.ok)throw Error(d.error||'Ошибка');return d}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-$('enter').onclick=async()=>{try{let d=await api('login',{method:'POST',body:JSON.stringify({password:$('pass').value})});me=d.delegate;$('login').classList.add('hidden');$('main').querySelector('.brand').classList.add('hidden');$('main').querySelector('h1').classList.add('hidden');$('main').querySelector('main>p')?.classList.add('hidden');if(me.id==='uk'){ $('main').style.display='none';$('ukDashboard').classList.add('active'); }else{$('app').classList.remove('hidden');$('flag').textContent=me.flag;$('country').textContent=me.name;$('chatBtn').classList.toggle('hidden',!['usa','turkey'].includes(me.id));await refresh()}}catch(e){$('err').textContent=e.message}};
+let selectedDelegation=null;
+function showScreen(id){['welcomeScreen','countryScreen','passwordScreen'].forEach(x=>$(x).style.display='none');$(id).style.display=(id==='passwordScreen'?'flex':'block');if(id==='countryScreen')$('countryScreen').classList.add('active');}
+$('startEntry').onclick=()=>showScreen('countryScreen');
+document.querySelectorAll('.country-card').forEach(card=>card.addEventListener('click',()=>{selectedDelegation={id:card.dataset.id,name:card.dataset.name,flag:card.dataset.flag};$('selectedName').textContent=selectedDelegation.name;$('selectedFlag').textContent=selectedDelegation.id==='nordania'?'':selectedDelegation.flag;$('selectedFlag').classList.toggle('nordania-flag',selectedDelegation.id==='nordania');$('pass').value='';$('err').textContent='';showScreen('passwordScreen');$('pass').focus()}));
+$('backCountries').onclick=()=>showScreen('countryScreen');
+$('countrySearch').addEventListener('input',()=>{let q=$('countrySearch').value.trim().toLocaleLowerCase('ru');document.querySelectorAll('.country-card').forEach(c=>c.style.display=(c.dataset.name.toLocaleLowerCase('ru').includes(q)||c.innerText.toLocaleLowerCase('ru').includes(q))?'flex':'none')});
+$('enter').onclick=async()=>{if(!selectedDelegation)return;try{let d=await api('login',{method:'POST',body:JSON.stringify({password:$('pass').value,delegation_id:selectedDelegation.id})});me=d.delegate;$('passwordScreen').style.display='none';if(me.id==='uk'){$('ukDashboard').classList.add('active')}else{$('main').style.display='block';$('app').classList.remove('hidden');$('flag').textContent=me.flag;$('country').textContent=me.name;$('chatBtn').classList.toggle('hidden',!['usa','turkey'].includes(me.id));await refresh()}}catch(e){$('err').textContent=e.message}};
+$('pass').addEventListener('keydown',e=>{if(e.key==='Enter')$('enter').click()});
 document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>['news','docs','votes','chat'].forEach(t=>$(t).classList.toggle('hidden',t!==b.dataset.tab)));
 async function refresh(){let d=await api('content');$('newsList').innerHTML=d.news.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Объявлений пока нет';$('docsList').innerHTML=d.documents.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Документов пока нет';$('voteList').innerHTML=d.resolutions.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.text)}</p>${x.status==='open'?['for','against','abstain'].map((v,i)=>`<button class="secondary" onclick="cast(${x.id},'${v}')">${['За','Против','Воздержаться'][i]}</button>`).join(''):'Голосование закрыто'}</div>`).join('')||'Нет проектов';if(['usa','turkey'].includes(me.id))await loadChat()}
 async function cast(id,choice){try{await api('vote',{method:'POST',body:JSON.stringify({resolution_id:id,choice})});alert('Голос принят');refresh()}catch(e){alert(e.message)}}

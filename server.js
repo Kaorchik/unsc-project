@@ -77,7 +77,9 @@ function safeEqual(a,b){const x=Buffer.from(String(a)),y=Buffer.from(String(b));
 app.post("/api/login",async(req,res)=>{
   try{
     const password=String(req.body.password||"");
-    const {rows}=await pool.query("SELECT id,name,flag,password_salt,password_hash FROM delegations WHERE active=TRUE AND password_hash IS NOT NULL");
+    const delegationId=String(req.body.delegation_id||"");
+    if(!/^[a-z]+$/.test(delegationId))return res.status(400).json({error:"Сначала выберите делегацию"});
+    const {rows}=await pool.query("SELECT id,name,flag,password_salt,password_hash FROM delegations WHERE id=$1 AND active=TRUE AND password_hash IS NOT NULL",[delegationId]);
     const found=rows.find(d=>safeEqual(hashPassword(password,d.password_salt),d.password_hash));
     if(!found)return res.status(401).json({error:"Неверный пароль"});
     req.session.role="delegate";req.session.delegationId=found.id;
