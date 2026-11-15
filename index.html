@@ -12,28 +12,28 @@ p,.muted{color:#aebdd0;line-height:1.5}input,textarea,button{width:100%;padding:
 input,textarea{background:#071a33;color:white;border:1px solid #45617f}button{background:#d7b66d;border:0;color:#17243a;font-weight:700;cursor:pointer}
 .secondary{background:#1b3a60;color:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hidden{display:none!important}
 .flag{font-size:40px}.item,.msg{padding:12px 0;border-bottom:1px solid #34506d}.msg{background:#0a1e38;border:0;padding:12px;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}
-/* Royal UK mobile cabinet */
-#ukDashboard{display:none;max-width:464px;margin:0 auto;padding:0 0 28px;background:#06152a;min-height:100vh}
-#ukDashboard.active{display:block}
-.uk-frame{position:relative;width:100%;line-height:0;overflow:hidden;background:#06152a}
-.uk-frame img{display:block;width:100%;height:auto}
-.uk-hit{position:absolute;display:block;border:0;background:transparent;padding:0;margin:0;border-radius:12px;cursor:pointer;z-index:3}
-.uk-hit:focus-visible{outline:3px solid #f4c86e;background:#ffffff18}
-.uk-hit.strategy{left:3.4%;top:51.4%;width:45.5%;height:10.5%}
-.uk-hit.voting{left:51%;top:51.4%;width:45.5%;height:10.5%}
-.uk-hit.documents{left:3.4%;top:62.9%;width:45.5%;height:10.5%}
-.uk-hit.messages{left:51%;top:62.9%;width:45.5%;height:10.5%}
-.uk-hit.history{left:3.4%;top:74.4%;width:45.5%;height:10.5%}
-.uk-hit.profile{left:51%;top:74.4%;width:45.5%;height:10.5%}
-.uk-hit.menu{right:3%;top:3.7%;width:9%;height:5.5%;border-radius:8px}
-#ukPage{display:none;max-width:464px;margin:0 auto;min-height:100vh;padding:20px 16px 40px;background:linear-gradient(160deg,#07172d,#10294a);color:#f5f1e8}
-#ukPage.active{display:block}
-.uk-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #a8894d;padding-bottom:12px;margin-bottom:20px}
-.uk-kicker{font-size:11px;letter-spacing:.16em;color:#d9b66a}.uk-title{font:30px Georgia,serif;margin:8px 0;color:#f8f2e6}
-.uk-card{background:#10294a;border:1px solid #9d7a3e;border-radius:14px;padding:16px;margin:12px 0}
-.uk-btn{background:#d6b46b;color:#101d31}.uk-back{width:auto;padding:9px 14px;background:#1b3a60;color:#fff}
-.uk-page-content{color:#d7dfeb;line-height:1.55}.uk-page-content .item{border-color:#39516e}
-@media(min-width:600px){#ukDashboard,#ukPage{border-left:1px solid #213b5d;border-right:1px solid #213b5d;box-shadow:0 0 60px #0008}}
+/* Shared national delegation dashboards */
+#countryDashboard{display:none;max-width:464px;margin:0 auto;padding:0 0 24px;background:#06152a;min-height:100vh}
+#countryDashboard.active{display:block}
+.dashboard-frame{position:relative;width:100%;line-height:0;overflow:hidden;background:#06152a;--row1:50%;--row2:60%;--row3:70%;--tileh:8.7%}
+.dashboard-frame img{display:block;width:100%;height:auto}
+.dashboard-hit{position:absolute;display:block;border:0;background:transparent;padding:0;margin:0;border-radius:12px;cursor:pointer;z-index:3}
+.dashboard-hit:focus-visible{outline:3px solid #f4c86e;background:#ffffff18}
+.dashboard-hit.strategy{left:3.2%;top:var(--row1);width:45.5%;height:var(--tileh)}
+.dashboard-hit.voting{left:51%;top:var(--row1);width:45.5%;height:var(--tileh)}
+.dashboard-hit.documents{left:3.2%;top:var(--row2);width:45.5%;height:var(--tileh)}
+.dashboard-hit.messages{left:51%;top:var(--row2);width:45.5%;height:var(--tileh)}
+.dashboard-hit.history{left:3.2%;top:var(--row3);width:45.5%;height:var(--tileh)}
+.dashboard-hit.profile{left:51%;top:var(--row3);width:45.5%;height:var(--tileh)}
+.dashboard-hit.menu{right:3%;top:3.5%;width:10%;height:6%;border-radius:8px}
+#countryPage{display:none;max-width:464px;margin:0 auto;min-height:100vh;padding:20px 16px 40px;background:linear-gradient(160deg,#07172d,#10294a);color:#f5f1e8}
+#countryPage.active{display:block}
+.country-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #a8894d;padding-bottom:12px;margin-bottom:20px}
+.country-kicker{font-size:11px;letter-spacing:.16em;color:#d9b66a}.country-page-title{font:30px Georgia,serif;margin:8px 0;color:#f8f2e6}
+.country-card-page{background:#10294a;border:1px solid #9d7a3e;border-radius:14px;padding:16px;margin:12px 0}
+.country-page-btn{background:#d6b46b;color:#101d31}.country-back{width:auto;padding:9px 14px;background:#1b3a60;color:#fff}
+.country-page-content{color:#d7dfeb;line-height:1.55}.country-page-content .item{border-color:#39516e}
+@media(min-width:600px){#countryDashboard,#countryPage{border-left:1px solid #213b5d;border-right:1px solid #213b5d;box-shadow:0 0 60px #0008}}
 
 /* Public delegation entry flow */
 body{background:#061326}
@@ -120,21 +120,21 @@ body{background:#061326}
 <div class="grid"><button data-tab="news">Новости</button><button data-tab="docs">Документы</button><button data-tab="votes">Голосование</button><button data-tab="chat" id="chatBtn" class="hidden">Закрытый канал</button></div>
 <section id="news" class="panel"><h2>Новости</h2><div id="newsList"></div></section><section id="docs" class="panel hidden"><h2>Документы</h2><div id="docsList"></div></section><section id="votes" class="panel hidden"><h2>Голосование</h2><div id="voteList"></div></section><section id="chat" class="panel hidden"><h2>Закрытый канал США — Турция</h2><div id="msgs"></div><textarea id="message" placeholder="Сообщение"></textarea><button id="send">Отправить</button></section></div>
 </main>
-<div id="ukDashboard">
- <div class="uk-frame">
-  <img src="/uk-royal-dashboard.png" alt="Royal Diplomatic Mission — United Kingdom dashboard">
-  <button class="uk-hit strategy" aria-label="Дипломатическая стратегия" data-ukpage="strategy"></button>
-  <button class="uk-hit voting" aria-label="Голосования" data-ukpage="votes"></button>
-  <button class="uk-hit documents" aria-label="Документы" data-ukpage="docs"></button>
-  <button class="uk-hit messages" aria-label="Переписка" data-ukpage="messages"></button>
-  <button class="uk-hit history" aria-label="История решений" data-ukpage="history"></button>
-  <button class="uk-hit profile" aria-label="Профиль делегата" data-ukpage="profile"></button>
-  <button class="uk-hit menu" aria-label="Меню" data-ukpage="menu"></button>
+<div id="countryDashboard">
+ <div class="dashboard-frame" id="dashboardFrame">
+  <img id="countryDashboardImage" src="/uk-royal-dashboard.png" alt="Дипломатический кабинет делегации">
+  <button class="dashboard-hit strategy" aria-label="Дипломатическая стратегия" data-dashboard-page="strategy"></button>
+  <button class="dashboard-hit voting" aria-label="Голосования" data-dashboard-page="votes"></button>
+  <button class="dashboard-hit documents" aria-label="Документы" data-dashboard-page="docs"></button>
+  <button class="dashboard-hit messages" aria-label="Переписка" data-dashboard-page="messages"></button>
+  <button class="dashboard-hit history" aria-label="История решений" data-dashboard-page="history"></button>
+  <button class="dashboard-hit profile" aria-label="Профиль делегата" data-dashboard-page="profile"></button>
+  <button class="dashboard-hit menu" aria-label="Меню" data-dashboard-page="menu"></button>
  </div>
 </div>
-<div id="ukPage">
- <div class="uk-top"><div><div class="uk-kicker">ROYAL DIPLOMATIC MISSION</div><div style="font:19px Georgia,serif">UNITED KINGDOM 🇬🇧</div></div><button class="uk-back" id="ukBack">← Главная</button></div>
- <div id="ukPageBody" class="uk-page-content"></div>
+<div id="countryPage">
+ <div class="country-top"><div><div class="country-kicker" id="countryKicker">DIPLOMATIC MISSION</div><div id="countryPageName" style="font:19px Georgia,serif">UNITED KINGDOM 🇬🇧</div></div><button class="country-back" id="countryBack">← Главная</button></div>
+ <div id="countryPageBody" class="country-page-content"></div>
 </div>
 <script>
 let me;const $=x=>document.getElementById(x);
@@ -146,36 +146,55 @@ $('startEntry').onclick=()=>showScreen('countryScreen');
 document.querySelectorAll('.country-card').forEach(card=>card.addEventListener('click',()=>{selectedDelegation={id:card.dataset.id,name:card.dataset.name,flag:card.dataset.flag};$('selectedName').textContent=selectedDelegation.name;$('selectedFlag').textContent=selectedDelegation.id==='nordania'?'':selectedDelegation.flag;$('selectedFlag').classList.toggle('nordania-flag',selectedDelegation.id==='nordania');$('pass').value='';$('err').textContent='';showScreen('passwordScreen');$('pass').focus()}));
 $('backCountries').onclick=()=>showScreen('countryScreen');
 $('countrySearch').addEventListener('input',()=>{let q=$('countrySearch').value.trim().toLocaleLowerCase('ru');document.querySelectorAll('.country-card').forEach(c=>c.style.display=(c.dataset.name.toLocaleLowerCase('ru').includes(q)||c.innerText.toLocaleLowerCase('ru').includes(q))?'flex':'none')});
-$('enter').onclick=async()=>{if(!selectedDelegation)return;try{let d=await api('login',{method:'POST',body:JSON.stringify({password:$('pass').value,delegation_id:selectedDelegation.id})});me=d.delegate;$('passwordScreen').style.display='none';if(me.id==='uk'){$('ukDashboard').classList.add('active')}else{$('main').style.display='block';$('app').classList.remove('hidden');$('flag').textContent=me.flag;$('country').textContent=me.name;$('chatBtn').classList.toggle('hidden',!['usa','turkey'].includes(me.id));await refresh()}}catch(e){$('err').textContent=e.message}};
+const dashboardFiles={france:'france-dashboard.png',usa:'usa-dashboard.png',russia:'russia-dashboard.png',china:'china-dashboard.png',uk:'uk-royal-dashboard.png',brazil:'brazil-dashboard.png',japan:'japan-dashboard.png',turkey:'turkey-dashboard.png',nordania:'nordania-dashboard.png'};
+const dashboardLayouts={
+ france:{r1:'46.6%',r2:'57.0%',r3:'67.5%',h:'9.2%'},
+ usa:{r1:'44.3%',r2:'54.7%',r3:'64.6%',h:'9.4%'},
+ uk:{r1:'51.5%',r2:'63.0%',r3:'74.5%',h:'10.2%'},
+ default:{r1:'50.0%',r2:'60.0%',r3:'69.5%',h:'8.7%'}
+};
+$('enter').onclick=async()=>{if(!selectedDelegation)return;try{let d=await api('login',{method:'POST',body:JSON.stringify({password:$('pass').value,delegation_id:selectedDelegation.id})});me=d.delegate;$('passwordScreen').style.display='none';openCountryDashboard()}catch(e){$('err').textContent=e.message}};
 $('pass').addEventListener('keydown',e=>{if(e.key==='Enter')$('enter').click()});
-document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>['news','docs','votes','chat'].forEach(t=>$(t).classList.toggle('hidden',t!==b.dataset.tab)));
-async function refresh(){let d=await api('content');$('newsList').innerHTML=d.news.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Объявлений пока нет';$('docsList').innerHTML=d.documents.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Документов пока нет';$('voteList').innerHTML=d.resolutions.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.text)}</p>${x.status==='open'?['for','against','abstain'].map((v,i)=>`<button class="secondary" onclick="cast(${x.id},'${v}')">${['За','Против','Воздержаться'][i]}</button>`).join(''):'Голосование закрыто'}</div>`).join('')||'Нет проектов';if(['usa','turkey'].includes(me.id))await loadChat()}
-async function cast(id,choice){try{await api('vote',{method:'POST',body:JSON.stringify({resolution_id:id,choice})});alert('Голос принят');refresh()}catch(e){alert(e.message)}}
-async function loadChat(){let d=await api('chat');$('msgs').innerHTML=d.messages.map(m=>`<div class="msg"><b>${m.sender_id==='usa'?'США':'Турция'}</b><p>${esc(m.body)}</p><small>${new Date(m.created_at).toLocaleString()}</small></div>`).join('')}
-$('send').onclick=async()=>{try{await api('chat',{method:'POST',body:JSON.stringify({body:$('message').value})});$('message').value='';loadChat()}catch(e){alert(e.message)}};
-async function ukOpen(page){
- $('ukDashboard').classList.remove('active');$('ukPage').classList.add('active');
- const body=$('ukPageBody');
+function openCountryDashboard(){
+ $('main').style.display='none';$('countryPage').classList.remove('active');$('countryDashboard').classList.add('active');
+ $('countryDashboardImage').src='/'+(dashboardFiles[me.id]||dashboardFiles.uk);
+ $('countryDashboardImage').alt='Дипломатический кабинет: '+me.name;
+ const layout=dashboardLayouts[me.id]||dashboardLayouts.default;
+ const frame=$('dashboardFrame');frame.style.setProperty('--row1',layout.r1);frame.style.setProperty('--row2',layout.r2);frame.style.setProperty('--row3',layout.r3);frame.style.setProperty('--tileh',layout.h);
+}
+async function refresh(){let d=await api('content');return d}
+async function dashboardOpen(page){
+ $('countryDashboard').classList.remove('active');$('countryPage').classList.add('active');
+ const body=$('countryPageBody');const countryName=me?.name||'Делегация';
+ $('countryPageName').textContent=countryName+' '+(me?.flag||'');
+ $('countryKicker').textContent=(me?.id==='uk'?'ROYAL DIPLOMATIC MISSION':me?.id==='france'?'MISSION DIPLOMATIQUE': 'UNITED NATIONS SECURITY COUNCIL');
  if(page==='strategy'){
-  body.innerHTML='<div class="uk-kicker">FOREIGN POLICY / UNITED KINGDOM</div><h1 class="uk-title">Diplomatic Strategy</h1><div class="uk-card"><p>Стратегические приоритеты британской делегации. Этот раздел редактируется представителем Великобритании.</p><textarea id="ukStrategy" rows="10" placeholder="Введите позицию и дипломатические инициативы..."></textarea><button class="uk-btn" id="saveStrategy">Сохранить стратегию</button><div id="strategyStatus" class="muted"></div></div>';
-  try{let d=await api('uk/strategy');$('ukStrategy').value=d.body||''}catch(e){$('strategyStatus').textContent=e.message}
-  $('saveStrategy').onclick=async()=>{try{await api('uk/strategy',{method:'PUT',body:JSON.stringify({body:$('ukStrategy').value})});$('strategyStatus').textContent='Стратегия сохранена'}catch(e){$('strategyStatus').textContent=e.message}};
+  if(me.id==='uk'){
+   body.innerHTML='<div class="country-kicker">FOREIGN POLICY / UNITED KINGDOM</div><h1 class="country-page-title">Diplomatic Strategy</h1><div class="country-card-page"><p>Стратегические приоритеты британской делегации. Этот раздел редактируется представителем Великобритании.</p><textarea id="ukStrategy" rows="10" placeholder="Введите позицию и дипломатические инициативы..."></textarea><button class="country-page-btn" id="saveStrategy">Сохранить стратегию</button><div id="strategyStatus" class="muted"></div></div>';
+   try{let d=await api('uk/strategy');$('ukStrategy').value=d.body||''}catch(e){$('strategyStatus').textContent=e.message}
+   $('saveStrategy').onclick=async()=>{try{await api('uk/strategy',{method:'PUT',body:JSON.stringify({body:$('ukStrategy').value})});$('strategyStatus').textContent='Стратегия сохранена'}catch(e){$('strategyStatus').textContent=e.message}};
+  }else{
+   body.innerHTML='<div class="country-kicker">DIPLOMATIC STRATEGY</div><h1 class="country-page-title">Дипломатическая стратегия</h1><div class="country-card-page"><p>Раздел дипломатической стратегии делегации '+esc(countryName)+'.</p><p>Позиция и инициативы этой делегации будут опубликованы здесь секретариатом.</p></div>';
+  }
  }else if(page==='docs'||page==='votes'){
-  body.innerHTML='<div class="uk-kicker">UNITED NATIONS SECURITY COUNCIL</div><h1 class="uk-title">'+(page==='docs'?'Documents':'Voting')+'</h1><div class="uk-card" id="ukData">Загрузка…</div>';
-  try{let d=await api('content');if(page==='docs')$('ukData').innerHTML=d.documents.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Документов пока нет';else $('ukData').innerHTML=d.resolutions.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.text)}</p>${x.status==='open'?['for','against','abstain'].map((v,i)=>`<button class="uk-btn" onclick="ukCast(${x.id},'${v}')">${['За','Против','Воздержаться'][i]}</button>`).join(''):'Голосование закрыто'}</div>`).join('')||'Нет проектов'}catch(e){$('ukData').textContent=e.message}
+  body.innerHTML='<div class="country-kicker">UNITED NATIONS SECURITY COUNCIL</div><h1 class="country-page-title">'+(page==='docs'?'Документы':'Голосования')+'</h1><div class="country-card-page" id="countryData">Загрузка…</div>';
+  try{let d=await api('content');if(page==='docs')$('countryData').innerHTML=d.documents.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.body)}</p></div>`).join('')||'Документов пока нет';else $('countryData').innerHTML=d.resolutions.map(x=>`<div class="item"><b>${esc(x.title)}</b><p>${esc(x.text)}</p>${x.status==='open'?['for','against','abstain'].map((v,i)=>`<button class="country-page-btn" onclick="dashboardCast(${x.id},'${v}')">${['За','Против','Воздержаться'][i]}</button>`).join(''):'Голосование закрыто'}</div>`).join('')||'Нет проектов'}catch(e){$('countryData').textContent=e.message}
  }else if(page==='messages'){
-  body.innerHTML='<div class="uk-kicker">DIPLOMATIC CORRESPONDENCE</div><h1 class="uk-title">Messages</h1><div class="uk-card">Раздел переписки Великобритании пока не подключён к серверу. Остальные разделы кабинета работают с общей базой проекта.</div>';
+  if(['usa','turkey'].includes(me.id)){
+   body.innerHTML='<div class="country-kicker">DIPLOMATIC CORRESPONDENCE</div><h1 class="country-page-title">Переписка США — Турция</h1><div class="country-card-page"><div id="msgs">Загрузка…</div><textarea id="message" placeholder="Сообщение"></textarea><button class="country-page-btn" id="send">Отправить</button></div>';
+   await loadChat();$('send').onclick=async()=>{try{await api('chat',{method:'POST',body:JSON.stringify({body:$('message').value})});$('message').value='';await loadChat()}catch(e){alert(e.message)}};
+  }else body.innerHTML='<div class="country-kicker">DIPLOMATIC CORRESPONDENCE</div><h1 class="country-page-title">Переписка</h1><div class="country-card-page">Закрытый дипломатический канал проекта доступен только делегациям США и Турции.</div>';
  }else if(page==='history'){
-  body.innerHTML='<div class="uk-kicker">ARCHIVE</div><h1 class="uk-title">Decision History</h1><div class="uk-card">История голосований и решений будет отображаться здесь. Сейчас доступны актуальные проекты в разделе Voting.</div>';
+  body.innerHTML='<div class="country-kicker">ARCHIVE</div><h1 class="country-page-title">История решений</h1><div class="country-card-page">Архив решений и голосований. Актуальные проекты и результаты доступны в разделе «Голосования».</div>';
  }else if(page==='profile'){
-  body.innerHTML='<div class="uk-kicker">DELEGATE PROFILE</div><h1 class="uk-title">Профиль делегата</h1><div class="uk-card"><div style="font-size:38px">🇬🇧</div><h2>Великобритания</h2><p>Permanent Mission to the United Nations</p><p>Статус: авторизованная делегация</p></div>';
+  body.innerHTML='<div class="country-kicker">DELEGATE PROFILE</div><h1 class="country-page-title">Профиль делегата</h1><div class="country-card-page"><div style="font-size:42px">'+(me.flag||'')+'</div><h2>'+esc(countryName)+'</h2><p>Статус: авторизованная делегация</p><p>Доступ предоставлен через дипломатический портал Совета Безопасности ООН.</p></div>';
  }else{
-  body.innerHTML='<h1 class="uk-title">Royal Mission Menu</h1><div class="uk-card">'+[['strategy','Дипломатическая стратегия'],['votes','Голосования'],['docs','Документы'],['messages','Переписка'],['history','История решений'],['profile','Профиль делегата']].map(x=>`<button class="uk-btn" onclick="ukOpen('${x[0]}')">${x[1]}</button>`).join('')+'<button class="uk-back" onclick="ukLogout()">Выйти из кабинета</button></div>';
+  body.innerHTML='<h1 class="country-page-title">Меню делегации</h1><div class="country-card-page">'+[['strategy','Дипломатическая стратегия'],['votes','Голосования'],['docs','Документы'],['messages','Переписка'],['history','История решений'],['profile','Профиль делегата']].map(x=>`<button class="country-page-btn" onclick="dashboardOpen('${x[0]}')">${x[1]}</button>`).join('')+'<button class="country-back" onclick="dashboardLogout()">Выйти из кабинета</button></div>';
  }
 }
-async function ukCast(id,choice){try{await api('vote',{method:'POST',body:JSON.stringify({resolution_id:id,choice})});alert('Голос принят');ukOpen('votes')}catch(e){alert(e.message)}}
-document.querySelectorAll('[data-ukpage]').forEach(b=>b.addEventListener('click',()=>ukOpen(b.dataset.ukpage)));
-$('ukBack').onclick=()=>{$('ukPage').classList.remove('active');$('ukDashboard').classList.add('active')};
-async function ukLogout(){await api('logout',{method:'POST'});location.reload()}
-$('exit').onclick=async()=>{await api('logout',{method:'POST'});location.reload()};
+async function dashboardCast(id,choice){try{await api('vote',{method:'POST',body:JSON.stringify({resolution_id:id,choice})});alert('Голос принят');dashboardOpen('votes')}catch(e){alert(e.message)}}
+async function loadChat(){let d=await api('chat');$('msgs').innerHTML=d.messages.map(m=>`<div class="msg"><b>${m.sender_id==='usa'?'США':'Турция'}</b><p>${esc(m.body)}</p><small>${new Date(m.created_at).toLocaleString()}</small></div>`).join('')||'Сообщений пока нет'}
+document.querySelectorAll('[data-dashboard-page]').forEach(b=>b.addEventListener('click',()=>dashboardOpen(b.dataset.dashboardPage)));
+$('countryBack').onclick=()=>{$('countryPage').classList.remove('active');$('countryDashboard').classList.add('active')};
+async function dashboardLogout(){await api('logout',{method:'POST'});location.reload()}
 </script></body></html>
